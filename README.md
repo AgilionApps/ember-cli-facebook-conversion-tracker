@@ -1,25 +1,39 @@
 # Ember-cli-facebook-conversion-tracker
 
-This README outlines the details of collaborating on this Ember addon.
+For more information on Facebook conversion tracking [https://www.facebook.com/help/286208984874814/](view their docs).
+
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+```
+npm install --save-dev ember-cli-facebook-conversion-tracker
+```
 
-## Running
+## Usage
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+Import the module, for example in a controller:
 
-## Running Tests
+```
+import Ember from 'ember';
+import FbTracker from 'ember-cli-facebook-conversion-tracker/mixins/conversion-tracker-mixin';
 
-* `ember test`
-* `ember test --server`
+export default Ember.ObjectController.extend(FbTracker.Mixin, {
+  actions: {
+    authenticate: function() {
+      this.fbTrackConversion('192928883');
+    }
+  }
+}
+```
 
-## Building
+Arguments for `fbTrackConversion` are:
+```
+//
+// fbTrackConversion(<pixel_id>, <value>, <curency>);
+//
+// - +pixelId+ - The ID of the conversion pixel you want to track the event under.
+// - +value+ (optional) - The monetary value of the conversion.
+// - +currency+ (optional) - The currency the value is reported in.
+//
+```
 
-* `ember build`
-
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
